@@ -9,7 +9,7 @@ local lp = game.Players.LocalPlayer
 special = workspace.Obbies:FindFirstChild(lp.Name).Items.Special
 local exe = false
 
-local Bot_Users = {}
+local Bot_Users = {"BaconBnt2"}
 
 local max
 local min
