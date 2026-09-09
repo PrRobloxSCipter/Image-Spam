@@ -33,7 +33,7 @@ local function ServerHop()
 coroutine.wrap(function()
 if server_failed then
 http.request({
-            Url = BRUH,
+            Url = web,
             Method = "POST",
             Headers = {
                 ["Content-Type"] = "application/json"
