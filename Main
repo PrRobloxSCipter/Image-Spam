@@ -1,0 +1,302 @@
+local  lp = game.Players.LocalPlayer
+del=game:GetService("ReplicatedStorage").Events.DeleteObject
+
+
+local obby = 4
+local set = 80
+local headSize = vector.create(math.random(70,130),0.5,math.random(70,130))
+
+getgenv().CanHopAndBlock = false
+
+
+local ImageTable = { 
+85751916151631,
+93449768960068,
+125389353199374,
+17557598045,
+18229928228,
+}
+
+local random = ImageTable[math.random(1,#ImageTable)]
+
+local Fail = 0
+
+local function Failed()
+	if set == 40 then
+		error("TOO LOW TO CONTINUE HOP OFF GNG")
+	else
+	Fail = Fail + 1
+   warn("Failed" , Fail)
+   set = set - 5
+   warn("reduced to " .. set)
+   end
+end
+
+local function StartProc()
+
+game:GetService("ReplicatedStorage").Events.ClaimMeARandomObby:InvokeServer()
+task.wait(1)
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("LoadObby"):InvokeServer(tostring(lp.UserId .. "#" .. obby))
+
+special=workspace.Obbies:FindFirstChild(lp.Name).Items.Special
+task.wait(0.4)
+lp.Character.HumanoidRootPart.CFrame = workspace.Obbies[lp.Name].Area.Area.CFrame
+if not special:FindFirstChild("Character Model") then
+	print("created dummy")
+	local args = {
+	"Character Model",
+	workspace.Obbies[lp.Name].Area.Area.CFrame
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("AddObject"):InvokeServer(unpack(args))
+end
+task.wait(0.1)
+if not special.Parent.Buttons:FindFirstChild("Button") then
+	print("created button")
+	local args = {
+	"Button",
+	workspace.Obbies[lp.Name].Area.Area.CFrame
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("AddObject"):InvokeServer(unpack(args))
+end
+-- dupe method
+local function CreateDummy()
+	repeat 
+		task.wait(0.5)
+		local duped = {}
+         for i = 1, 15 do
+			local tbl= {}
+			table.insert(duped, tbl)
+			table.insert(tbl, special:FindFirstChildWhichIsA("Model").Head)
+			table.insert(tbl, workspace.Obbies[lp.Name].Area.Area.CFrame * CFrame.new(0,-80,0));
+		   table.insert(tbl, workspace.Obbies[lp.Name].Area.Area.Size)
+		end
+    warn(game.ReplicatedStorage.Events.CloneObject:InvokeServer(duped)) until #special:GetChildren() > 70
+end
+task.wait(1)
+
+
+local h={}
+local headTable = {}
+local function ChangeSize()
+   for i,v in next, special.Parent.Parts:GetChildren() do
+      if v:IsA"Part" and v.Name== "Head" then
+      	table.insert(headTable,{v,special.Parent.Parent.Area.Area.CFrame * CFrame.new(0,-80,0), headSize})
+      end
+end
+warn(game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("MoveObject"):InvokeServer(headTable))
+end
+blockObby=function()
+	coroutine.wrap(function()
+	if not special.Parent.Buttons:FindFirstChild("Button") then
+	print("created button")
+	local args = {
+	"Button",
+	workspace.Obbies[lp.Name].Area.Area.CFrame
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("AddObject"):InvokeServer(unpack(args))
+end
+      game.ReplicatedStorage.Events.EffectObject:InvokeServer(
+        {
+         workspace:WaitForChild("Obbies"):WaitForChild(lp.Name):WaitForChild("Items"):WaitForChild("Buttons"):WaitForChild("Button").Activateds
+         },
+         
+         "outline",
+          "Default"
+            )
+            end)()
+end
+
+AddImage=function()
+coroutine.wrap(function()
+   for i,v in next, special.Parent.Parts:GetChildren() do
+   	if v.Name =="Head" then
+      --local random = ImageTable[math.random(1,#ImageTable)]
+      
+      game.ReplicatedStorage.Events.EffectObject:InvokeServer(
+         {v},
+            "image",
+            "Default"
+         
+      )
+      task.wait()
+      game.ReplicatedStorage.Events.EffectObject:InvokeServer(
+         {v},
+            "image",
+            "Face",
+             "Top"
+         
+      )game.ReplicatedStorage.Events.EffectObject:InvokeServer(
+         {v},
+            "image",
+            "Image",
+            tostring(random)
+         
+      )
+      game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer({v},"Transparency",1)
+   end
+   end
+   end)()
+end
+AddFire=function()
+coroutine.wrap(function()
+   for i,v in next, special.Parent.Parts:GetChildren() do
+   	if v.Name =="Head" then
+      --local random = ImageTable[math.random(1,#ImageTable)]
+      
+      game.ReplicatedStorage.Events.EffectObject:InvokeServer(
+         {v},
+            "fire",
+            "Default"
+         
+      )
+      task.wait()
+      game.ReplicatedStorage.Events.EffectObject:InvokeServer(
+         {v},
+            "fire",
+            "Heat",
+             30
+         
+      )game.ReplicatedStorage.Events.EffectObject:InvokeServer(
+         {v},
+            "fire",
+            "Size",
+             30
+         
+      )
+      game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer({v},"Transparency",1)
+   end
+   end
+   end)()
+end
+local To = {}
+local function Transparency()
+   for i,v in next, special.Parent.Parts:GetChildren() do
+      if v.Name =="Head" then
+         table.insert(To, v)
+      end
+   end
+print(game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer(To,"Transparency",1))
+end
+
+f=function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Simulation-Radius-Changer-21748"))()
+end
+-- coroutine.wrap(function() for i=1,1 do f() end;end)()
+	--[[local function IsHead()
+		for i,v in next, special:GetDescendants() do 
+			if v:IsA("Part") and v.Name =="Head" then
+				return true
+			end
+		end
+        return false
+	end
+
+local function Heads()
+local he={}
+for i,v in next, special:GetDescendants () do
+if v:IsA"SpecialMesh" and v.Parent.Name == "Head" then
+	if #he  == 20 then
+		
+	end
+   table.insert(he,v)
+end
+end
+end]]
+local function Heads()
+    while task.wait(0.5) do
+        local he = {}
+        for _, v in next, special:GetDescendants() do
+            if v:IsA("SpecialMesh") and v.Parent and v.Parent.Name == "Head" then
+                table.insert(he, v)
+                if #he == 20 then
+                    break
+                end
+            end
+        end
+        if #he == 0 then
+            break
+        end
+        del:InvokeServer(he)
+        local a = del.Parent.Undo:InvokeServer()
+        if a ~= true then
+            warn("not true")
+        end
+        warn("undo done?")
+    end
+end
+
+CreateDummy()
+task.wait(1)
+Heads()
+
+task.wait(3)
+--[[del:InvokeServer(he)
+a=del.Parent.Undo:InvokeServer()
+if a ~= true then
+	warn("not true")
+end
+warn("undo done?")]]
+ChangeSize()
+coroutine.wrap(function()
+	Transparency()
+AddImage()
+end)()
+task.wait(0.5)
+-- head parent to Parts Folder
+-- ChangeSize()
+
+model={}
+for i,v in next, special: GetDescendants() do
+if  v:IsA("Part") and v.Name =="Character Model" then
+table.insert(model,v);end;end;
+task.wait(3)
+del:InvokeServer(model)
+
+task.wait(0.3)
+for i= 1,3 do
+	--f()
+task.wait(1)
+
+--[[for i,v in next, workspace.Obbies[game.Players.LocalPlayer.Name].Items.Parts: GetDescendants() do
+if v.Name~= "Part" and v.Name == "Head" then
+	coroutine.wrap(function() f() end)()
+	local ok = Instance.new("BodyPosition")
+    ok.Parent = v
+    ok.MaxForce = Vector3.new(math.huge,math.huge,math.huge)
+    ok.P = 100000
+    ok.D = 1000
+    ok.Position = Vector3.new(math.random(-1563,1317),math.random(1,100),math.random(-50,50))
+coroutine.wrap(function() f() end)()
+end
+end]]
+
+
+for i,v in next, workspace.Obbies[game.Players.LocalPlayer.Name].Items.Parts: GetDescendants() do
+if v.Name~= "Part" and v.Name == "Head" then
+coroutine.wrap(function() f() end)()
+v.CFrame = CFrame.new(
+            math.random(-1563,1317),
+            math.random(1,100),
+            math.random(-50,50))
+coroutine.wrap(function() f() end)()
+
+end
+end
+getgenv().CanHopAndBlock = true
+
+
+end
+
+end
+StartProc()
+
+--[[repeat
+	coroutine.wrap(function()
+ Failed() 
+end)() 
+task.wait(13) 
+StartProc() 
+until 
+#special.Parent.Parts:GetChildren() > 5]]
+
+--checks()
