@@ -10,7 +10,7 @@ special = workspace.Obbies:FindFirstChild(lp.Name).Items.Special
 local exe = false
 
 local Bot_Users = {
-"BaconBnt2",
+"Baconbnt2",
 "OK","ok","oo","dqqd","br"
 }
 
