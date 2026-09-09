@@ -1,0 +1,155 @@
+local lp = game.Players.LocalPlayer
+special = workspace.Obbies:FindFirstChild(lp.Name).Items.Special
+local exe = false
+
+local Bot_Users = {}
+
+local max
+local min
+if lp.Name == Bot_Users[1] then
+  max = 19
+  min = 17
+elseif lp.Name == Bot_Users[2] then
+  max = 16
+  min = 15
+elseif lp.Name == Bot_Users[3] then
+  max = 14
+  min = 13
+elseif lp.Name == Bot_Users[4] then
+  max = 13
+  min = 7
+elseif lp.Name == Bot_Users[5] then
+max = 19
+min = 6
+elseif lp.Name == Bot_Users[6] then
+max = 17
+min = 10
+end
+
+local Teleportation_Failed = 0
+local server_failed = false
+
+local function ServerHop()
+coroutine.wrap(function()
+if server_failed then
+http.request({
+            Url = BRUH,
+            Method = "POST",
+            Headers = {
+                ["Content-Type"] = "application/json"
+            },
+            Body = HttpService:JSONEncode({
+                content = "@everyone" .. "Teleportation Failed Reconnecting to a Recommended Server",
+                username = game.Players.LocalPlayer.Name .. " Teleportation Failed"
+            })
+        })
+end
+end)()
+local servers = {}
+	local req = game:HttpGet("https://games.roblox.com/v1/games/" .. PlaceId .. "/servers/Public?sortOrder=Desc&limit=100&excludeFullGames=true")
+	local body = HttpService:JSONDecode(req)
+
+	if body and body.data then
+		for i, v in next, body.data do
+			if type(v) == "table" and tonumber(v.playing) and tonumber(v.maxPlayers) and v.playing < v.maxPlayers and v.id ~= JobId then
+				table.insert(servers, 1, v.id)
+			end
+		end
+	end
+
+	if #servers > 0 then
+		TeleportService:TeleportToPlaceInstance(PlaceId, servers[math.random(1, #servers)], Players.LocalPlayer)
+	else
+        server_failed = false
+		warn("no server")
+        task.delay(4,ServerHop)
+	end
+end
+
+local function HOPPING()
+    if httprequest then
+        local servers = {}
+        local cursor = nil
+        local foundServer = false
+
+        repeat
+            local url = string.format(
+                "https://games.roblox.com/v1/games/%d/servers/Public?sortOrder=Desc&limit=100&excludeFullGames=true%s",
+                PlaceId,
+                cursor and ("&cursor=" .. cursor) or ""
+            )
+
+            local success, req = pcall(function()
+                return httprequest({ Url = url })
+            end)
+
+            if success and req then
+                local body = HttpService:JSONDecode(req.Body)
+                if body and body.data then
+                    for _, a in pairs(body.data) do
+                        if type(a) == "table" and tonumber(a.playing) and tonumber(a.maxPlayers) and a.playing >= min and a.playing <= max and a.id ~= JobId then
+                           table.insert(servers, a.id)
+                        end
+                    end
+                end
+
+                cursor = body.nextPageCursor
+            else
+                warn("HTTP Request Error: " .. (req or "No response"))
+                break
+            end
+
+        until not cursor or #servers >= 500
+
+        if #servers > 0 then
+            local success, err = pcall(function()
+                TeleportService:TeleportToPlaceInstance(PlaceId, servers[math.random(1, #servers)], Players.LocalPlayer)
+            end)
+            if not success then
+                warn("Teleportation failed: " .. err)
+                task.delay(2,HOPPING)
+            end
+        else
+          Teleportation_Failed = Teleportation_Failed + 1
+          print("failed " .. Teleportation_Failed)
+           if Teleportation_Failed >= 15 then
+           server_failed = true
+            ServerHop()
+            return
+           end
+            warn("No suitable servers found.")
+            task.delay(4,HOPPING)
+        end
+    end
+end
+
+
+coroutine.wrap(function()
+while task.wait() do
+if getgenv().CanHopAndBlock and not exe then
+exe = true
+  wait(3)
+	coroutine.wrap(function()
+	if not special.Parent.Buttons:FindFirstChild("Button") then
+	print("created button")
+	local args = {
+	"Button",
+	workspace.Obbies[lp.Name].Area.Area.CFrame
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("AddObject"):InvokeServer(unpack(args))
+end
+      game.ReplicatedStorage.Events.EffectObject:InvokeServer(
+        {
+         workspace:WaitForChild("Obbies"):WaitForChild(lp.Name):WaitForChild("Items"):WaitForChild("Buttons"):WaitForChild("Button").Activateds
+         },
+         
+         "outline",
+          "Default"  
+            )
+          end)()
+         HOPPING()
+
+
+end
+end
+end)()
