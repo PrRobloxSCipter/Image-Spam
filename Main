@@ -265,7 +265,7 @@ Heads()
 a=del.Parent.Undo:InvokeServer()
 if a ~= true then
 	warn("not true")
-end]]
+end
 warn("undo done?")]]
 
 coroutine.wrap(function()
@@ -330,7 +330,6 @@ coroutine.wrap(function()
         })
     end)()
 end)()
-end
 StartProc()
 
 --[[repeat
