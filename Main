@@ -134,7 +134,7 @@ end
             tostring(random)
          
       )
-       game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer({v},"Transparency",1)
+      -- game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer({v},"Transparency",1)
    end
 end
 --[[AddImage=function()
@@ -202,7 +202,7 @@ end
 local To = {}
 local function Transparency()
    for i,v in next, special.Parent.Parts:GetChildren() do
-      if v.Name =="Head" then
+      if v.Name == "Head" and v:IsA("Part") then
          table.insert(To, v)
       end
    end
@@ -260,17 +260,18 @@ CreateDummy()
 task.wait(1)
 Heads()
 
-task.wait(3)
+--task.wait(3)
 --[[del:InvokeServer(he)
-a=del.Parent.Undo:InvokeServer()
+--[[a=del.Parent.Undo:InvokeServer()
 if a ~= true then
 	warn("not true")
-end
-coroutine.wrap(function()
-	Transparency()
-AddImage()
-end)()
+end]]
 warn("undo done?")]]
+
+coroutine.wrap(function()
+coroutine.wrap(function() AddImage() end)()
+Transparency()
+end)()
 ChangeSize()
 task.wait(0.5)
 -- head parent to Parts Folder
@@ -285,22 +286,8 @@ del:InvokeServer(model)
 
 task.wait(0.3)
 for i= 1,3 do
-	--f()
+	f()
 task.wait(1)
-
---[[for i,v in next, workspace.Obbies[game.Players.LocalPlayer.Name].Items.Parts: GetDescendants() do
-if v.Name~= "Part" and v.Name == "Head" then
-	coroutine.wrap(function() f() end)()
-	local ok = Instance.new("BodyPosition")
-    ok.Parent = v
-    ok.MaxForce = Vector3.new(math.huge,math.huge,math.huge)
-    ok.P = 100000
-    ok.D = 1000
-    ok.Position = Vector3.new(math.random(-1563,1317),math.random(1,100),math.random(-50,50))
-coroutine.wrap(function() f() end)()
-end
-end]]
-
 
 for i,v in next, workspace.Obbies[game.Players.LocalPlayer.Name].Items.Parts: GetDescendants() do
 if v.Name~= "Part" and v.Name == "Head" then
@@ -314,8 +301,6 @@ coroutine.wrap(function() f() end)()
 end
 end
 getgenv().CanHopAndBlock = true
-
-
 end
 
 coroutine.wrap(function()
