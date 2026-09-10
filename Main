@@ -132,7 +132,7 @@ coroutine.wrap(function()
             tostring(random)
          
       )
-      game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer({v},"Transparency",1)
+      -- game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer({v},"Transparency",1)
    end
    end
    end)()
@@ -235,12 +235,12 @@ a=del.Parent.Undo:InvokeServer()
 if a ~= true then
 	warn("not true")
 end
-warn("undo done?")]]
-ChangeSize()
 coroutine.wrap(function()
 	Transparency()
 AddImage()
 end)()
+warn("undo done?")]]
+ChangeSize()
 task.wait(0.5)
 -- head parent to Parts Folder
 -- ChangeSize()
