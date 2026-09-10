@@ -260,9 +260,9 @@ CreateDummy()
 task.wait(1)
 Heads()
 
---task.wait(3)
+-- task.wait(3)
 --[[del:InvokeServer(he)
---[[a=del.Parent.Undo:InvokeServer()
+a=del.Parent.Undo:InvokeServer()
 if a ~= true then
 	warn("not true")
 end]]
