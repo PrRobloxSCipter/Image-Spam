@@ -106,7 +106,38 @@ end
             end)()
 end
 
+local Storing = {}
+for i,v in next, special.Parent.Parts:GetChildren() do
+	if v:IsA("Part") and v.Name == "Head" then
+		if #Storing == 100 then break end
+		table.insert(Storing,v)
+	end
+end
 AddImage=function()
+      game.ReplicatedStorage.Events.EffectObject:InvokeServer(
+         Storing,
+            "image",
+            "Default"
+         
+      )
+      task.wait()
+      game.ReplicatedStorage.Events.EffectObject:InvokeServer(
+         Storing,
+            "image",
+            "Face",
+             "Top"
+         
+      )game.ReplicatedStorage.Events.EffectObject:InvokeServer(
+         Storing,
+            "image",
+            "Image",
+            tostring(random)
+         
+      )
+       game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer({v},"Transparency",1)
+   end
+end
+--[[AddImage=function()
 coroutine.wrap(function()
    for i,v in next, special.Parent.Parts:GetChildren() do
    	if v.Name =="Head" then
@@ -136,7 +167,7 @@ coroutine.wrap(function()
    end
    end
    end)()
-end
+end]]
 AddFire=function()
 coroutine.wrap(function()
    for i,v in next, special.Parent.Parts:GetChildren() do
