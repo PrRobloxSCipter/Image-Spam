@@ -135,7 +135,6 @@ end
          
       )
       -- game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer({v},"Transparency",1)
-   end
 end
 --[[AddImage=function()
 coroutine.wrap(function()
