@@ -58,6 +58,7 @@ if not special.Parent.Buttons:FindFirstChild("Button") then
 }
 game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("AddObject"):InvokeServer(unpack(args))
 end
+task.wait(2)
 -- dupe method
 local function CreateDummy()
 	repeat 
