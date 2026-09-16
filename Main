@@ -297,9 +297,9 @@ v.CFrame = CFrame.new(
             math.random(1,100),
             math.random(-50,50))
 coroutine.wrap(function() f() end)()
+end
+end
 task.wait(1)
-end
-end
 getgenv().CanHopAndBlock = true
 end
 
