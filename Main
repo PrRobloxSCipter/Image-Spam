@@ -35,7 +35,7 @@ end
 local function StartProc()
 
 game:GetService("ReplicatedStorage").Events.ClaimMeARandomObby:InvokeServer()
-(1)
+task.wait(1)
 game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("LoadObby"):InvokeServer(tostring(lp.UserId .. "#" .. obby))
 
 special=workspace.Obbies:FindFirstChild(lp.Name).Items.Special
