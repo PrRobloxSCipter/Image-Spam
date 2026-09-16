@@ -288,9 +288,9 @@ task.wait(0.3)
 for i= 1,3 do
 coroutine.wrap(function()
 	f();end)()
-
+task.wait(1)
 for i,v in next, workspace.Obbies[game.Players.LocalPlayer.Name].Items.Parts: GetDescendants() do
-if v.Name~= "Part" and v.Name == "Head" then
+if v.Name ~= "Part" and v.Name == "Head" then
 coroutine.wrap(function() f() end)()
 v.CFrame = CFrame.new(
             math.random(-1563,1317),
@@ -299,7 +299,6 @@ v.CFrame = CFrame.new(
 coroutine.wrap(function() f() end)()
 end
 end
-task.wait(1)
 getgenv().CanHopAndBlock = true
 end
 
