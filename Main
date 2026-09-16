@@ -3,7 +3,7 @@ del=game:GetService("ReplicatedStorage").Events.DeleteObject
 
 getgenv().web = "https://discord.com/api/webhooks/1547329972497289316/" .. "mkwxTP1tJE0MpCIP3jQP0pB8ZVe06u8Gix_nTcE3euJ91CbhW3b-r2qUxHBfVDEn_1pH"
 local obby = 4
-local set = 80
+local set = 70
 local headSize = vector.create(math.random(70,100),0.5,math.random(70,100))
 
 getgenv().CanHopAndBlock = false
@@ -71,7 +71,7 @@ local function CreateDummy()
 			table.insert(tbl, workspace.Obbies[lp.Name].Area.Area.CFrame * CFrame.new(0,-80,0));
 		   table.insert(tbl, workspace.Obbies[lp.Name].Area.Area.Size)
 		end
-    warn(game.ReplicatedStorage.Events.CloneObject:InvokeServer(duped)) until #special:GetChildren() > 70
+    warn(game.ReplicatedStorage.Events.CloneObject:InvokeServer(duped)) until #special:GetChildren() >= 70
 end
 -- task.wait(1)
 
