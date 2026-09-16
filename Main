@@ -234,7 +234,7 @@ end
 end
 end]]
 local function Heads()
-    while -- task.wait(0.5) do
+    while task.wait(0.5) do
         local he = {}
         for _, v in next, special:GetDescendants() do
             if v:IsA("SpecialMesh") and v.Parent and v.Parent.Name == "Head" then
