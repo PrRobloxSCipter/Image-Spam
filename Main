@@ -54,7 +54,7 @@ task.wait(0.5)
 lp.Character.HumanoidRootPart.CFrame = workspace.Obbies[lp.Name].Area.Area.CFrame
 for i,v in next, special.Parent.Parts:GetChildren() do
 if v:IsA("MeshPart") and v.Name == "Head" then
-del({v}) end;end
+del:InvokeServer({v}) end;end
 task.wait(0.2)
 if not special:FindFirstChild("Character Model") then
 	print("created dummy")
