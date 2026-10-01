@@ -29,6 +29,7 @@ coroutine.wrap(function()
 		Sim()
 	end
 end)()
+local f = 0
 
 local Fail = 0
 
@@ -77,6 +78,9 @@ task.wait(1)
 -- dupe method
 if not special:FindFirstChild("Character Model") then
   repeat task.wait(1)
+f = f + 1
+if f >= 5 then
+game:GetService("TeleportService"):Teleport(game.PlaceId) end
 local args = {
 	"Character Model",
 	workspace.Obbies[lp.Name].Area.Area.CFrame
