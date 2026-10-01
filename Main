@@ -79,7 +79,7 @@ task.wait(1)
 if not special:FindFirstChild("Character Model") then
   repeat task.wait(1)
 f = f + 1
-if f >= 5 then
+if f >= 5 then 
 game:GetService("TeleportService"):Teleport(game.PlaceId) end
 local args = {
 	"Character Model",
