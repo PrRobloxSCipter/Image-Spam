@@ -76,12 +76,12 @@ end
 task.wait(1)
 -- dupe method
 if not special:FindFirstChild("Character Model") then
-  repeat task.wait()
+  repeat task.wait(1)
 local args = {
 	"Character Model",
 	workspace.Obbies[lp.Name].Area.Area.CFrame
 }
-game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("AddObject"):InvokeServer(unpack(args)) until special:FindFirstChild("Character Model") end
+print(game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("AddObject"):InvokeServer(unpack(args))) until special:FindFirstChild("Character Model") end
 
 warn(special:FindFirstChildWhichIsA("Model").Head)
 
