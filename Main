@@ -81,8 +81,7 @@ local args = {
 	"Character Model",
 	workspace.Obbies[lp.Name].Area.Area.CFrame
 }
-game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("AddObject"):InvokeServer(unpack(args))
-end until special:FindFirstChild("Character Model") end
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("AddObject"):InvokeServer(unpack(args)) until special:FindFirstChild("Character Model") end
 
 warn(special:FindFirstChildWhichIsA("Model").Head)
 
