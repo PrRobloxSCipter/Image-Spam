@@ -75,6 +75,7 @@ game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("AddObj
 end
 task.wait(1)
 -- dupe method
+warn(special:FindFirstChildWhichIsA("Model").Head)
 local function CreateDummy()
 	repeat 
 		task.wait(0.5)
