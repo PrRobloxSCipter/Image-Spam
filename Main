@@ -50,7 +50,7 @@ task.wait(1)
 game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("LoadObby"):InvokeServer(tostring(lp.UserId .. "#" .. obby))
 
 special=workspace.Obbies:FindFirstChild(lp.Name).Items.Special
-task.wait(0.2)
+task.wait(0.5)
 lp.Character.HumanoidRootPart.CFrame = workspace.Obbies[lp.Name].Area.Area.CFrame
 for i,v in next, special.Parent.Parts:GetChildren() do
 if v:IsA("MeshPart") and v.Name == "Head" then
@@ -64,7 +64,7 @@ if not special:FindFirstChild("Character Model") then
 }
 game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("AddObject"):InvokeServer(unpack(args))
 end
-task.wait(0.1)
+task.wait(0.5)
 if not special.Parent.Buttons:FindFirstChild("Button") then
 	print("created button")
 	local args = {
