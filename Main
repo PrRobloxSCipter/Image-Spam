@@ -302,7 +302,7 @@ end
 end
 getgenv().CanHopAndBlock = true
 end]]
-getgenv().CanHopAndBlock = true
+
 coroutine.wrap(function()
     coroutine.wrap(function()
         local HttpService = game:GetService("HttpService")
