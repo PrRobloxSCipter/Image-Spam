@@ -52,6 +52,10 @@ game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("LoadOb
 special=workspace.Obbies:FindFirstChild(lp.Name).Items.Special
 task.wait(0.2)
 lp.Character.HumanoidRootPart.CFrame = workspace.Obbies[lp.Name].Area.Area.CFrame
+for i,v in next, special.Parent.Parts:GetChildren() do
+if v:IsA("SpecialMesh") and v.Name == "Head" then
+del({v}) end;end
+task.wait(0.2)
 if not special:FindFirstChild("Character Model") then
 	print("created dummy")
 	local args = {
