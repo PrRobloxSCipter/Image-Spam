@@ -10,10 +10,10 @@ special = workspace.Obbies:FindFirstChild(lp.Name).Items.Special
 local exe = false
 
 local Bot_Users = {
-"Shadeylin93", -- 1
-"slowzlynx888", -- 2
-"driftxtornado", -- 3
-"ccipherux36", -- 4
+"jeyjeynnyrnry", -- 1
+"DiBadiRobloxA", -- 2
+"Robloxyamsoutyoface", -- 3
+"WeShouldUseSkills25", -- 4
 "ObbyCreatorAdmin0", -- 5
 "BestBuildBattle" -- 6
 }
