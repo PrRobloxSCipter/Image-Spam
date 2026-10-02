@@ -304,7 +304,7 @@ coroutine.wrap(function() AddImage() end)()
 Transparency()
 end)()
 ChangeSize()
-task.wait(0.5)
+task.wait(1)
 -- head parent to Parts Folder
 -- ChangeSize()
 
@@ -314,7 +314,7 @@ if  v:IsA("Part") and v.Name == "Character Model" then
 table.insert(model,v);end;end;
 task.wait(0.5)
 warn(#model)
-del:InvokeServer(model)
+print(del:InvokeServer(model))
 
 task.wait(1)
 
