@@ -19,7 +19,17 @@ local ImageTable = {
 127284342922140
 }
 
-local random = ImageTable[math.random(1,#ImageTable)]
+local ScaryImageTable = {
+	3100736018,
+	1452754142,
+	84794960906165,
+	105847473543673,
+	7409940110,
+	436648104,
+	124380317750042
+}
+
+local random = ScaryImageTable[math.random(1,#ImageTable)]
 
 local function Sim()
 	if setsimulationradius then
