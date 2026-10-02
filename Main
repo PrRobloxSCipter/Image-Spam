@@ -304,7 +304,7 @@ coroutine.wrap(function() AddImage() end)()
 Transparency()
 end)()
 ChangeSize()
-task.wait(1)
+task.wait(10)
 -- head parent to Parts Folder
 -- ChangeSize()
 
