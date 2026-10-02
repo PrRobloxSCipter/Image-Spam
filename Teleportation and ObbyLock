@@ -40,6 +40,10 @@ max = 17
 min = 10
 end
 
+print(lp.Name)
+print(max)
+print(min)
+
 local Teleportation_Failed = 0
 local server_failed = false
 
@@ -98,6 +102,11 @@ local function HOPPING()
             end)
 
             if success and req then
+                 if req.StatusCode ~= 200 then
+                    print("htttp error " .. tostring(req.StatusCode)) 
+                    task.delay(2,HOPPING)
+                    return
+                end
                 local body = HttpService:JSONDecode(req.Body)
                 if body and body.data then
                     for _, a in pairs(body.data) do
@@ -113,7 +122,7 @@ local function HOPPING()
                 break
             end
 
-        until not cursor or #servers >= 500
+        until not cursor or #servers >= 200
 
         if #servers > 0 then
             local success, err = pcall(function()
