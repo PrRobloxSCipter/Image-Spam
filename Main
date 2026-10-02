@@ -310,9 +310,10 @@ task.wait(0.5)
 
 model={}
 for i,v in next, special: GetDescendants() do
-if  v:IsA("Part") and v.Name =="Character Model" then
+if  v:IsA("Part") and v.Name == "Character Model" then
 table.insert(model,v);end;end;
-task.wait(0.1)
+task.wait(0.5)
+warn(#model)
 del:InvokeServer(model)
 
 task.wait(1)
