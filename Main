@@ -92,7 +92,7 @@ if not special:FindFirstChild("Character Model") then
   repeat task.wait(1)
 f = f + 1
 if f >= 10 then 
-game:GetService("TeleportService"):Teleport(game.PlaceId) end
+game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId , game.JobId , lp) end
 local args = {
 	"Character Model",
 	workspace.Obbies[lp.Name].Area.Area.CFrame
