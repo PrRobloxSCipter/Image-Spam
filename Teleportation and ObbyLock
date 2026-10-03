@@ -106,11 +106,11 @@ local function HOPPING()
             end)
 
             if success and req then
-                 if req.StatusCode ~= 200 then
+               --[[  if req.StatusCode ~= 200 then
                     print("htttp error " .. tostring(req.StatusCode)) 
                     task.delay(2,HOPPING)
                     return
-                end
+                end]]
                 local body = HttpService:JSONDecode(req.Body)
                 if body and body.data then
                     for _, a in pairs(body.data) do
