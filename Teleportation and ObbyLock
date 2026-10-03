@@ -92,7 +92,7 @@ local function HOPPING()
 
         repeat
             local url = string.format(
-                "https://games.roblox.com/v1/games/%d/servers/Public?sortOrder=Desc&limit=100&excludeFullGames=true%s",
+                "https://games.roblox.com/v1/games/%d/servers/Public?sortOrder=Desc&limit=100&excludeFullGames=false%s",
                 PlaceId,
                 cursor and ("&cursor=" .. cursor) or ""
             )
