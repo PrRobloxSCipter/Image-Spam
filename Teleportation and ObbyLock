@@ -15,7 +15,8 @@ local Bot_Users = {
 "DavidFrank778", -- 3
 "AngelaMaline89", -- 4
 "ObbyCreatorAdmin0", -- 5
-"BestBuildBattle" -- 6
+"BestBuildBattle", -- 6
+"zzClientERROR"
 }
 
 local max
@@ -37,6 +38,9 @@ max = 19
 min = 6
 elseif lp.Name == Bot_Users[6] then
 max = 17
+min = 10
+elseif lp.Name == Bot_Users[7] then
+max = 15 
 min = 10
 end
 
